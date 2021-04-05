@@ -18,7 +18,6 @@ class _socketpageState extends State<socketpage> {
 
   Socket sockets;
   String copasendname;
-  bool _showBottomSheet;
   String URI = "https://sokya-app.herokuapp.com";
 String socketstatus ="not connected";
 String datapring = "null";

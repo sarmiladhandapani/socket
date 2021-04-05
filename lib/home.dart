@@ -32,7 +32,7 @@ class _HomepageState extends State<Homepage> {
               ),
             ),
             RaisedButton(
-              child: Text("Connected"),
+              child: Text("Enter Socket"),
               onPressed: () {
                 _navigateHome(context);
               },
