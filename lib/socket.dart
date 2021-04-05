@@ -96,7 +96,7 @@ initSocket() async {
                 child: Text("socket on: CO_PATIENT_REQUEST_${widget.user}" )),
             Container(
                 padding: EdgeInsets.only(top: 20,bottom: 20),
-                child: Text("socket lission"+ datapring)),
+                child: Text("socket lission "+ datapring)),
             Container(
               padding: EdgeInsets.only(top: 20,bottom: 20),
               child: RaisedButton(
