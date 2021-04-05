@@ -20,7 +20,7 @@ class _socketpageState extends State<socketpage> {
   String copasendname;
   String URI = "https://sokya-app.herokuapp.com";
 String socketstatus ="not connected";
-String datapring = "null";
+String datapring = "null";String connectemit = "null";
   bool loading = true;
 initSocket() async {
 
@@ -48,11 +48,26 @@ initSocket() async {
             }
             print('videoscreen connected');
             print('videoscreen CO_PATIENT_REQUEST_${widget.user}');
+
+            sockets.on("FromAPI", (data) {
+              print('videoscreen' + data);
+              print("levale");
+              setState(() {
+                datapring = data;
+              });
+
+
+            });
             sockets.on("CO_PATIENT_REQUEST_${widget.user}", (data) {
               print('videoscreen' + data);
               print("levale");
-              datapring = data;
+              setState(() {
+                connectemit = data;
+              });
+
+
             });
+            print(datapring);
           });
         });
 
@@ -67,7 +82,7 @@ initSocket() async {
   void initState() {
     super.initState(
     );
-
+    //initSocket();
      setState(() {
        loading = true;
      });
@@ -85,22 +100,25 @@ initSocket() async {
           children: <Widget>[
            Container(
              padding: EdgeInsets.only(top: 20,bottom: 20),
-               child: Text("Metting id:"+ widget.user)
+               child: Text("Metting id: "+ widget.user)
            ),
             Container(
                 padding: EdgeInsets.only(top: 20,bottom: 20),
-                child: Text("Socket connection status:"+ socketstatus)
+                child: Text("Socket connection status: "+ socketstatus)
             ),
             Container(
                 padding: EdgeInsets.only(top: 20,bottom: 20),
                 child: Text("socket on: CO_PATIENT_REQUEST_${widget.user}" )),
             Container(
                 padding: EdgeInsets.only(top: 20,bottom: 20),
-                child: Text("socket lission "+ datapring)),
+                child: Text("socket lission on FromAPI : "+ datapring)),
+            Container(
+                padding: EdgeInsets.only(top: 20,bottom: 20),
+                child: Text("socket lission on Join Metting: "+ connectemit)),
             Container(
               padding: EdgeInsets.only(top: 20,bottom: 20),
               child: RaisedButton(
-                child: Text("Connected"),
+                child: Text("Click to Connect Socket"),
                 onPressed: () {
                   initSocket();
                 },
